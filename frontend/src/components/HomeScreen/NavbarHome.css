@@ -1,0 +1,9 @@
+.navbar{
+    display: block;
+    background-color: antiquewhite;
+}
+
+.item{
+    font-size: 3rem;
+    padding-right:15%
+}
