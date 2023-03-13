@@ -1,50 +1,135 @@
 import React from "react";
 const flexBetween = "flex items-center justify-between";
+import registerIcon from "../assets/placa1.jpeg";
+import lances from "../assets/lances.png";
+import { Link as RouterLink } from "react-router-dom";
 
 const LiveAuction = () => {
   return (
     <div>
       <div class=" sm:py-16">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 class=" text-center font-bold tracking-tight text-gray-900 sm:text-3xl">
-            Leilões ao vivo
+        <div class="mx-auto max-w-6xl  px-6 lg:px-8">
+          <h2 class=" text-center font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Leilões Ativos
           </h2>
-          <div class=" border-2 border-black mx-auto mt-5 grid  grid-cols-1  border-t  sm:mt-10  lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div class="group relative">
-              <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                <a href="#">
-                  <span class="absolute inset-0"></span>
-                  Carro barato vender rapido
-                </a>
-              </h3>
-              <div class="flex items-center gap-x-4 text-xs">
-                <time class="text-gray-500">16:40</time>
-                <a
-                  href="#"
-                  class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100"
-                >
-                  Automoveis
-                </a>
-              </div>
-              <a
-                href="#"
-                className="mt-10 block w-full rounded-md  px-3 py-2  text-lg font-semibold  shadow-sm 0"
-              >
-                Dar Lance
-              </a>
-            </div>
-            
-            <div class="relative mt-8 flex items-center gap-x-4">
-              <div class="text-sm leading-6">
-                <p class="font-semibold text-gray-900">
-                  <a href="#">
-                    <span class="absolute inset-0"></span>
-                    Everton
+          <div class="mx-auto  grid  gap-y-10 gap-x-8 border-t border-gray-200 pt-10  lg:grid-cols-3">
+            <RouterLink to="/" style={{ textDecoration: "none" }}>
+            <article class="  p-4 flex flex-col items-start justify-between  shadow-[0px_22px_70px_4px_rgba(0,0,0,0.20)] rounded-md">
+              <img className="w-full " src={`${registerIcon}`} />
+              <div class="group relative pt-3 w-full">
+                <div>
+                  <time class="text-gray-500">Inicio: 16:40</time>
+                  <a
+                    href="#"
+                    class="  rounded-full bg-gray-50 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                  >
+                    Tecnologia
                   </a>
-                </p>
-                <p class="text-gray-600">Vendedor Diamante</p>
+                </div>
+                <h3 class="mt-3 text-lg font-bold text-bg-gray-900 ">
+                  CARRO BARATO VENDER MUITO
+                </h3>
+
+                <h3 class="mt-3 text-md font-bold text-bg-gray-900 ">
+                  Tempo para acabar: 23:54:22
+                </h3>
+                
               </div>
-            </div>
+              <div class="flex pt-3 w-full space-x-2">
+              <img className="w-10 " src={`${lances}`} />
+              
+                <time class="text-gray-500 mt-4 ">12</time>
+
+
+                <h3 class="mt-4 text-md font-bold text-bg-gray-900 pl-12 ">
+                  Lance Atual: R$910,20
+                </h3>        
+              </div>
+
+
+              
+            </article>
+            </RouterLink>
+            
+
+            <RouterLink to="/" style={{ textDecoration: "none" }}>
+            <article class="  p-4 flex flex-col items-start justify-between  shadow-[0px_22px_70px_4px_rgba(0,0,0,0.20)] rounded-md">
+              <img className="w-full " src={`${registerIcon}`} />
+              <div class="group relative pt-3 w-full">
+                <div>
+                  <time class="text-gray-500">Inicio: 16:40</time>
+                  <a
+                    href="#"
+                    class="  rounded-full bg-gray-50 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                  >
+                    Tecnologia
+                  </a>
+                </div>
+                <h3 class="mt-3 text-lg font-bold text-bg-gray-900 ">
+                  CARRO BARATO VENDER MUITO
+                </h3>
+
+                <h3 class="mt-3 text-md font-bold text-bg-gray-900 ">
+                  Tempo para acabar: 23:54:22
+                </h3>
+                
+              </div>
+              <div class="flex pt-3 w-full space-x-2">
+              <img className="w-10 " src={`${lances}`} />
+              
+                <time class="text-gray-500 mt-4 ">12</time>
+
+
+                <h3 class="mt-4 text-md font-bold text-bg-gray-900 pl-12 ">
+                  Lance Atual: R$910,20
+                </h3>        
+              </div>
+
+
+              
+            </article>
+            </RouterLink>
+
+            <RouterLink to="/" style={{ textDecoration: "none" }}>
+            <article class="  p-4 flex flex-col items-start justify-between  shadow-[0px_22px_70px_4px_rgba(0,0,0,0.20)] rounded-md">
+              <img className="w-full " src={`${registerIcon}`} />
+              <div class="group relative pt-3 w-full">
+                <div>
+                  <time class="text-gray-500">Inicio: 16:40</time>
+                  <a
+                    href="#"
+                    class="  rounded-full bg-gray-50 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                  >
+                    Tecnologia
+                  </a>
+                </div>
+                <h3 class="mt-3 text-lg font-bold text-bg-gray-900 ">
+                  CARRO BARATO VENDER MUITO
+                </h3>
+
+                <h3 class="mt-3 text-md font-bold text-bg-gray-900 ">
+                  Tempo para acabar: 23:54:22
+                </h3>
+                
+              </div>
+              <div class="flex pt-3 w-full space-x-2">
+              <img className="w-10 " src={`${lances}`} />
+              
+                <time class="text-gray-500 mt-4 ">12</time>
+
+
+                <h3 class="mt-4 text-md font-bold text-bg-gray-900 pl-12 ">
+                  Lance Atual: R$910,20
+                </h3>        
+              </div>
+
+
+              
+            </article>
+            </RouterLink>
+            
+
+            
           </div>
         </div>
       </div>

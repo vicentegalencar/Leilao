@@ -6,7 +6,7 @@ const flexBetween = "flex items-center justify-between";
 const Index = () => {
   return (
     <div>
-      {/* <LiveAuction /> */}
+      <LiveAuction />
       <NextAuctions />
     </div>
   );
