@@ -7,7 +7,7 @@ const LiveAuction = () => {
       <div class=" sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 class=" text-center font-bold tracking-tight text-gray-900 sm:text-3xl">
-            Leilão ao vivo
+            Leilões ao vivo
           </h2>
           <div class=" border-2 border-black mx-auto mt-5 grid  grid-cols-1  border-t  sm:mt-10  lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div class="group relative">
