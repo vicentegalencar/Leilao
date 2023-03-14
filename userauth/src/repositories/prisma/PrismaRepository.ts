@@ -1,5 +1,6 @@
+import { User } from "@prisma/client";
 import { prisma } from "../../prisma";
-import { UserDatabase, UserProps } from "../UserRepository";
+import { UserDatabase, UserProps, GetUserInfoProps } from "../UserRepository";
 
 export class PrismaRepository implements UserDatabase {
   async createUser({ name, cpf, birthday, email, phone, password, roles }: UserProps) {
@@ -19,11 +20,24 @@ export class PrismaRepository implements UserDatabase {
     });
   }
 
-  async getUserInfo(id: string) {
-    await prisma.user.findUnique({
+  async getUserInfo(props: GetUserInfoProps) {
+    const {id, email} = props
+    var user = null;
+    if(id) {
+      
+      user = await prisma.user.findUnique({
       where: {
         id,
       },
-    });
+    })} else {
+      
+      user = await prisma.user.findFirst({
+      where: {
+        email
+      }
+    });}
+    return user as User
   }
+
+  
 }

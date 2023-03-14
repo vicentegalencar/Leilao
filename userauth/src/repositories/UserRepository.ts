@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export interface UserProps {
     name: string;
     cpf: string;
@@ -8,7 +10,12 @@ export interface UserProps {
     roles: string[];
 }
 
+export interface GetUserInfoProps {
+    id?:string;
+    email?:string;
+}
+
 export interface UserDatabase {
     createUser: (props: UserProps) => Promise<void>;
-    getUserInfo: (id: string) => Promise<void>
+    getUserInfo: (props:GetUserInfoProps) => Promise<User>;
 }

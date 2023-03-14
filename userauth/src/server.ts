@@ -2,6 +2,7 @@ import express from 'express'
 // import cors from 'cors'
 import { routes } from './routes'
 
+
 // Porta do servidor
 const PORT = process.env.PORT || 4000
 
