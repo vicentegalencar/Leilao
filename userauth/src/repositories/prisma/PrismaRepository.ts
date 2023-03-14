@@ -2,7 +2,10 @@ import { prisma } from "../../prisma";
 import { UserDatabase, UserProps } from "../UserRepository";
 
 export class PrismaRepository implements UserDatabase {
-  async createUser({ name, cpf, birthday, email, phone, password }: UserProps) {
+  async createUser({ name, cpf, birthday, email, phone, password, roles }: UserProps) {
+    const rolesIds = await prisma.role.findMany({
+      where: {name: {in: roles}}, select: {id: true}
+    })
     await prisma.user.create({
       data: {
         name,
@@ -11,6 +14,7 @@ export class PrismaRepository implements UserDatabase {
         email,
         phone,
         password,
+        roles: {connect: rolesIds.map(id => (id))}
       },
     });
   }

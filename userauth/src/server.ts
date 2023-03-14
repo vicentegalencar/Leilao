@@ -10,6 +10,7 @@ const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 
 // App Express
 const app = express()
+app.use(express.json())
 app.use(routes)
 
 // Inicia o sevidor

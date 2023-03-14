@@ -7,6 +7,8 @@ export const routes = express.Router()
 const prismaRepository = new PrismaRepository();
 
 routes.post('/user/create', (req, res)=>{
+    console.log(req.body);
+    
     req.body.birthday = new Date(req.body.birthday);
     const createUser = new CreateUser(prismaRepository);
     createUser.execute(req.body);

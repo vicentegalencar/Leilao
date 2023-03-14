@@ -5,7 +5,7 @@ export interface UserProps {
     email: string;
     phone: string;
     password: string;
-    roles: number[];
+    roles: string[];
 }
 
 export interface UserDatabase {

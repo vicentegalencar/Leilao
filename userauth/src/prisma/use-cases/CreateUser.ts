@@ -7,7 +7,7 @@ export interface CreateUserProps {
     email: string;
     phone: string;
     password: string;
-    roles: number[];
+    roles: string[];
 }
 
 export class CreateUser {
