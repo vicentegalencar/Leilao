@@ -28,9 +28,7 @@ const Index = () => {
               <a href="#" className={`${navLinks}`}>
                 Próximos Leilões
               </a>
-              <a href="#" className={`${navLinks}`}>
-                Suporte
-              </a>
+              
             </div>
             <div className={`${flexBetween} gap-9 `}>
               <RouterLink to="register" style={{ textDecoration: "none" }}>
