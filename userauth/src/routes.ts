@@ -1,19 +1,20 @@
 import express, { NextFunction } from "express";
 import { PrismaRepository } from "./repositories/prisma/PrismaRepository";
-import { CreateUser } from "./prisma/use-cases/CreateUser";
+import { ChangePassword, CreateUser, UpdateUser } from "./prisma/use-cases/UserCases";
 
 import dotenvsafe from "dotenv-safe";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { UserIDRequest } from "./definition/definition";
 
 dotenvsafe.config();
 
 export const routes = express.Router();
 
-const prismaRepository = new PrismaRepository();
+const repository = new PrismaRepository();
 
 routes.post("/user/create", (req, res) => {
   req.body.birthday = new Date(req.body.birthday);
-  const createUser = new CreateUser(prismaRepository);
+  const createUser = new CreateUser(repository);
   createUser.execute(req.body);
   return res.status(201).send();
 });
@@ -21,10 +22,10 @@ routes.post("/user/create", (req, res) => {
 routes.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  prismaRepository.getUserInfo({ email }).then((user) => {
+  repository.getUserInfo({ email }).then((user) => {
     if (user.password == password) {
       const token = jwt.sign({ id: user.id }, process.env.SECRET as string, {
-        expiresIn: 300,
+        expiresIn: 3600,
       });
       return res.json({ auth: true, token: token });
     }
@@ -39,6 +40,34 @@ routes.post("/logout", (req, res) => {
 routes.post("/verifytoken", verify_token, (req, res, next) => {
   return res.json({ auth: true });
 });
+
+routes.get('/user/info', verify_token, (req, res, next) => {
+  repository.getUserInfo({id: (req as UserIDRequest).userID}).then((user)=>{
+    res.json(user)
+  })
+})
+
+routes.post('/password/change', verify_token, (req, res, next)=>{
+  const {newpw, oldpw} = req.body
+  const changePassword = new ChangePassword(repository)
+  changePassword.execute((req as UserIDRequest).userID, oldpw, newpw).then(()=>{
+    res.status(201).json({message:"Senha alterada com sucesso"})
+  }).catch((err)=>{
+    res.status(400).json({message: "Nao foi possivel alterar a senha"})
+  })
+  
+})
+
+routes.put('/user/update', verify_token, (req, res, next)=>{
+  const {email, name, cpf, birthday, phone} = req.body
+  
+  const updateUser = new UpdateUser(repository)
+  updateUser.execute((req as UserIDRequest).userID, {email, name, cpf, birthday, phone}).then(()=>{
+    res.status(201).json(req.body)
+  }).catch((err)=>{
+    res.status(400).json({message: 'Nao foi possivel alterar seus dados', err})
+  })
+})
 
 function verify_token(req: any, res: any, next: any) {
   const token = req.headers["x-access-token"];

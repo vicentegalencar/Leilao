@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { UpdateUserProps } from "../prisma/use-cases/UserCases";
 
 export interface UserProps {
     name: string;
@@ -18,4 +19,6 @@ export interface GetUserInfoProps {
 export interface UserDatabase {
     createUser: (props: UserProps) => Promise<void>;
     getUserInfo: (props:GetUserInfoProps) => Promise<User>;
+    updateUser: (id: string, props: UpdateUserProps) => Promise<void>;
+    changePassword: (id: string, password: string) => Promise<void>;
 }

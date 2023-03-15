@@ -1,5 +1,6 @@
 import { User } from "@prisma/client";
 import { prisma } from "../../prisma";
+import { UpdateUserProps } from "../../prisma/use-cases/UserCases";
 import { UserDatabase, UserProps, GetUserInfoProps } from "../UserRepository";
 
 export class PrismaRepository implements UserDatabase {
@@ -37,6 +38,25 @@ export class PrismaRepository implements UserDatabase {
       }
     });}
     return user as User
+  }
+
+  async updateUser(id: string, {birthday, cpf, email, name, phone}: UpdateUserProps) {
+    console.log(name);
+    
+    await prisma.user.update({where: {id}, data:{
+      birthday,
+      cpf,
+      email,
+      name,
+      phone
+    }})
+  }
+
+  async changePassword(id: string, password: string) {
+
+    await prisma.user.update({
+      where: {id}, data:{password}
+    })
   }
 
   
