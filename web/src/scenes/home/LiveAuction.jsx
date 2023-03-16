@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 const flexBetween = "flex items-center justify-between";
 import registerIcon from "../assets/placa1.jpeg";
-import user from "../assets/placa2.jpeg";
-import lance from "../assets/lances.png";
+import user from "../assets/usernumber.png";
+import lance from "../assets/bid.png";
 import { Link as RouterLink } from "react-router-dom";
 import Countdown from "../util/Countdown";
 
@@ -32,16 +32,16 @@ const LiveAuction = () => {
           <h2 class=" text-center font-bold tracking-tight text-gray-900 sm:text-5xl">
             Leilões Ativos
           </h2>
-          <div class="mx-auto  grid  gap-y-10 gap-x-8 border-t border-gray-200 pt-10  lg:grid-cols-3 ">
-          <RouterLink to="/detailed" style={{ textDecoration: "none" }}>
-              <article class="  p-4 flex flex-col items-start justify-between  shadow-[0px_22px_70px_4px_rgba(0,0,0,0.20)] rounded-md">
+          <div class="mx-auto  grid  gap-y-10 gap-x-8 border-t border-gray-200 pt-10  grid-cols-3 ">
+          <RouterLink to="/detailed" style={{ textDecoration: "none" }} className="">
+              <article class=" p-4 flex flex-col  rounded-md shadow-xl hover:shadow-2xl">
                 <img className="w-full" src={`${registerIcon}`} />
                 <div class="group relative pt-3 w-full">
                   <div>
-                    <time class="text-gray-500">Inicio: 16:40</time>
+                    <time class="text-gray-600">Inicio: 16:40</time>
                     <a
                       href="#"
-                      class="  rounded-full bg-gray-50 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                      class="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600  hover:bg-gray-100"
                     >
                       Tecnologia
                     </a>
@@ -73,14 +73,14 @@ const LiveAuction = () => {
             </RouterLink>
 
             <RouterLink to="/" style={{ textDecoration: "none" }}>
-              <article class="  p-4 flex flex-col items-start justify-between  shadow-[0px_22px_70px_4px_rgba(0,0,0,0.20)] rounded-md">
+              <article class="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
                 <img className="w-full" src={`${registerIcon}`} />
                 <div class="group relative pt-3 w-full">
                   <div>
                     <time class="text-gray-500">Inicio: 16:40</time>
                     <a
                       href="#"
-                      class="  rounded-full bg-gray-50 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                      class="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
                     >
                       Tecnologia
                     </a>
@@ -109,14 +109,14 @@ const LiveAuction = () => {
             </RouterLink>
 
             <RouterLink to="/" style={{ textDecoration: "none" }}>
-              <article class="  p-4 flex flex-col items-start justify-between  shadow-[0px_22px_70px_4px_rgba(0,0,0,0.20)] rounded-md">
+              <article class="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
                 <img className="w-full" src={`${registerIcon}`} />
                 <div class="group relative pt-3 w-full">
                   <div>
                     <time class="text-gray-500">Inicio: 16:40</time>
                     <a
                       href="#"
-                      class="  rounded-full bg-gray-50 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                      class="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
                     >
                       Tecnologia
                     </a>

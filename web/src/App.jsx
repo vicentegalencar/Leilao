@@ -7,6 +7,7 @@ import Home from "./scenes/home/Index"
 import Detailed from "./scenes/home/DetailedAuction"
 import Login from "./scenes/authentication/Login"
 import Register from "./scenes/authentication/Register"
+import RegisterItem from "./scenes/loggedUser/RegisterItem"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/detailed' element={<Detailed />} />
+      <Route path='/registerItem' element={<RegisterItem />} />
     </Routes>
   </BrowserRouter>
   )
