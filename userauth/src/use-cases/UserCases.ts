@@ -1,4 +1,4 @@
-import { UserDatabase } from "../../repositories/UserRepository";
+import { UserDatabase } from "../repositories/UserRepository";
 
 export interface CreateUserProps {
     name: string;
@@ -65,5 +65,12 @@ export class ChangePassword {
             throw new Error("Senhas nao coincidem");
             
         }
+    }
+}
+
+export class DeleteUser {
+    constructor(private userDatabase: UserDatabase) {}
+    async execute(id: string) {
+        this.userDatabase.deleteUser(id)
     }
 }

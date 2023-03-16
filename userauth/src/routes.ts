@@ -1,6 +1,6 @@
 import express, { NextFunction } from "express";
 import { PrismaRepository } from "./repositories/prisma/PrismaRepository";
-import { ChangePassword, CreateUser, UpdateUser } from "./prisma/use-cases/UserCases";
+import { ChangePassword, CreateUser, DeleteUser, UpdateUser } from "./use-cases/UserCases";
 
 import dotenvsafe from "dotenv-safe";
 import jwt, { JwtPayload } from "jsonwebtoken";
@@ -55,7 +55,6 @@ routes.post('/password/change', verify_token, (req, res, next)=>{
   }).catch((err)=>{
     res.status(400).json({message: "Nao foi possivel alterar a senha"})
   })
-  
 })
 
 routes.put('/user/update', verify_token, (req, res, next)=>{
@@ -66,6 +65,13 @@ routes.put('/user/update', verify_token, (req, res, next)=>{
     res.status(201).json(req.body)
   }).catch((err)=>{
     res.status(400).json({message: 'Nao foi possivel alterar seus dados', err})
+  })
+})
+
+routes.post('/user/delete', verify_token, (req, res, next)=>{
+  const deleteUser = new DeleteUser(repository);
+  deleteUser.execute((req as UserIDRequest).userID).then(()=>{
+    res.status(200).json({message: 'Usuario deletado do sistema com sucesso'})
   })
 })
 

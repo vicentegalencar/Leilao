@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { prisma } from "../../prisma";
-import { UpdateUserProps } from "../../prisma/use-cases/UserCases";
+import { UpdateUserProps } from "../../use-cases/UserCases";
 import { UserDatabase, UserProps, GetUserInfoProps } from "../UserRepository";
 
 export class PrismaRepository implements UserDatabase {
@@ -59,5 +59,12 @@ export class PrismaRepository implements UserDatabase {
     })
   }
 
+  async deleteUser(id: string) {
+    await prisma.user.delete({
+      where: {
+        id
+      }
+    })
+  }
   
 }
