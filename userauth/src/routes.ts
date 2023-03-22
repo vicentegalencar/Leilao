@@ -38,7 +38,7 @@ routes.post("/logout", (req, res) => {
 });
 
 routes.post("/verifytoken", verify_token, (req, res, next) => {
-  return res.json({ auth: true });
+  return res.json({ auth: true, userID: (req as UserIDRequest).userID });
 });
 
 routes.get('/user/info', verify_token, (req, res, next) => {
