@@ -41,9 +41,9 @@ routes.post("/verifytoken", verify_token, (req, res, next) => {
   return res.json({ auth: true, userID: (req as UserIDRequest).userID });
 });
 
-routes.get('/user/info', verify_token, (req, res, next) => {
+routes.post('/user/info', verify_token, (req, res, next) => {
   repository.getUserInfo({id: (req as UserIDRequest).userID}).then((user)=>{
-    res.json(user)
+    res.json({auth:true, userInfo: user})
   })
 })
 

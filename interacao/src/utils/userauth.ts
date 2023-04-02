@@ -10,9 +10,16 @@ export class UserAuth implements AuthenticationService {
       return res
         .status(401)
         .json({ auth: false, message: "Nenhum token informado" });
-    axios.post('http://localhost:4000/verifytoken', {}, {headers: {"x-access-token": token}}).then((ver)=>{
-        if (ver.data.auth) next();
+    axios.post('http://localhost:4000/user/info',{}, {headers: {"x-access-token": token}}).then((ver)=>{
+        if (ver.data.auth) {
+          req.userInfo = ver.data.userInfo
+          next();
+        }
         return res.json(ver)
+    }).catch((err)=>{
+      return res
+      .status(401)
+      .json({ auth: false, message: err });
     })
   }
 }
