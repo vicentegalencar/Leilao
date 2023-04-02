@@ -14,13 +14,17 @@ from .decorators import verify_token  # Importe o decorator token_required
 
 
 # Create your views here.
-@verify_token
+
 
 class ItemList(generics.ListCreateAPIView):
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    authentication_classes = [SessionAuthentication]
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = [SessionAuthentication]
+    # permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        print(self.request.userInfo)
+        return super().get_queryset()
 
 
