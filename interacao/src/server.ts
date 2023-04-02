@@ -12,7 +12,7 @@ import { SocketClient } from '../definition/definition'
 
 
 // Porta do servidor
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4001
 
 // Host do servidor
 const HOSTNAME = process.env.HOSTNAME || 'http://localhost'

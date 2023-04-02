@@ -87,6 +87,6 @@ function verify_token(req: any, res: any, next: any) {
         .status(500)
         .json({ auth: false, message: "Falha ao verificar o token" });
     req.userID = (decoded as JwtPayload).id;
-    next();
+    next()
   });
 }
