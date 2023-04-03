@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+
+model Comment {
+  id  String @id @default(cuid())
+  text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user_id String
+  auction_id String
+}
+
+model Ticket {
+  id String @id @default(cuid())
+  reason String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user_id String
+  messages Message[]
+}
+
+model Message {
+  id String @id @default(cuid())
+  sent DateTime @default(now())
+  user_id String
+  text String
+  ticket Ticket? @relation(fields: [ticketID], references: [id])
+  ticketID String?
+}
