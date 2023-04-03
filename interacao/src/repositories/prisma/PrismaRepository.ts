@@ -1,9 +1,10 @@
-import { Ticket } from "@prisma/client";
+import { Message, Ticket } from "@prisma/client";
 import { prisma } from "../../prisma";
 import { CommentProps, CommentsRepository } from "../CommentsRepository";
 import { TicketProps, TicketRepository } from "../TicketsRepository";
+import { MessageProps, MessageRepository } from "../MessageRepository";
 
-export class PrismaRepository implements CommentsRepository, TicketRepository {
+export class PrismaRepository implements CommentsRepository, TicketRepository, MessageRepository {
     async CreateComment({text, user_id, auction_id}: CommentProps) {
         await prisma.comment.create({data: {
             auction_id,
@@ -23,5 +24,12 @@ export class PrismaRepository implements CommentsRepository, TicketRepository {
         )
     };
 
-    
+    async CreateTicketMessage({ text, user_id, ticketID }: MessageProps) {
+        return await prisma.message.create({data:{
+            user_id,
+            text,
+            ticketID
+        }})
+    };
+
 }
