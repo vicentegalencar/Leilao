@@ -33,6 +33,11 @@ const Index = () => {
                   Anunciar
                 </a>
               </RouterLink>
+              <RouterLink to="/profile" style={{ textDecoration: "none" }}>
+                <a href="#" className={`${navLinks} text-2xl`}>
+                  Perfil
+                </a>
+              </RouterLink>
               
             </div>
             <div className={`${flexBetween} gap-9 flex grid-cols-2 `}>
