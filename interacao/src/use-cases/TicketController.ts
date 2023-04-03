@@ -4,7 +4,7 @@ export class TicketController implements TicketRepository {
     constructor(private ticketRepository: TicketRepository){}
 
     async CreateTicket({reason, user_id}: TicketProps) {
-        await this.ticketRepository.CreateTicket({
+        return await this.ticketRepository.CreateTicket({
             reason, user_id
         })
     };

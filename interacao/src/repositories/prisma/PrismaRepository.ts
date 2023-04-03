@@ -1,3 +1,4 @@
+import { Ticket } from "@prisma/client";
 import { prisma } from "../../prisma";
 import { CommentProps, CommentsRepository } from "../CommentsRepository";
 import { TicketProps, TicketRepository } from "../TicketsRepository";
@@ -12,7 +13,7 @@ export class PrismaRepository implements CommentsRepository, TicketRepository {
     }
 
     async CreateTicket({reason, user_id}: TicketProps) {
-        await prisma.ticket.create(
+        return await prisma.ticket.create(
             {
                 data: {
                     reason,
@@ -21,4 +22,6 @@ export class PrismaRepository implements CommentsRepository, TicketRepository {
             }
         )
     };
+
+    
 }

@@ -17,5 +17,11 @@ routes.post('/ticket/create', auth.VerifyToken, (req:any, res, next) => {
     const user_id = req.userInfo.id
     console.log(user_id, reason)
     const ticketController = new TicketController(repository);
-    ticketController.CreateTicket({reason, user_id})
+    ticketController.CreateTicket({reason, user_id}).then((ticket)=>{
+      return res.json(ticket)
+    })
   });
+
+  routes.post('/ticket/update', auth.VerifyToken, (req:any, res, next)=>{
+    
+  })

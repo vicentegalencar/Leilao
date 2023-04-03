@@ -35,4 +35,5 @@ model Message {
   user_id String
   ticket Ticket? @relation(fields: [ticketID], references: [id])
   ticketID String?
+  text String
 }
