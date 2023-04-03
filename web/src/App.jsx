@@ -9,6 +9,7 @@ import Login from "./scenes/authentication/Login"
 import Register from "./scenes/authentication/Register"
 import RegisterItem from "./scenes/loggedUser/RegisterItem"
 import Profile from "./scenes/loggedUser/Profile"
+import SupportTicket from './scenes/loggedUser/SupportTicket';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Route path='/detailed' element={<Detailed />} />
       <Route path='/registerItem' element={<RegisterItem />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/ticket' element={<SupportTicket />} />
     </Routes>
   </BrowserRouter>
   )

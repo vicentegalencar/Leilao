@@ -4,28 +4,9 @@ import io from 'socket.io-client';
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
-  const socketRef = useRef();
+  
 
-  useEffect(() => {
-    socketRef.current = io.connect('http://localhost:8000'); // Altere para o endereço do seu servidor backend
-
-    socketRef.current.on('newMessage', (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    return () => {
-      socketRef.current.disconnect();
-    };
-  }, []);
-
-  const sendMessage = (e) => {
-    e.preventDefault();
-
-    if (inputMessage.trim()) {
-      socketRef.current.emit('sendMessage', inputMessage);
-      setInputMessage('');
-    }
-  };
+  
 
   return (
     <div className="flex flex-col w-full  h-96 border border-gray-300 rounded bg-white">
@@ -36,11 +17,10 @@ const Chat = () => {
           </div>
         ))}
       </div>
-      <form onSubmit={sendMessage} className="flex p-2 border-t border-gray-300 bg-gray-100">
+      <form className="flex p-2 border-t border-gray-300 bg-gray-100">
         <input
           type="text"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
+        //   value={inputMessage}
           placeholder="Digite sua mensagem..."
           className="flex-1 px-2 py-1 mr-2 border border-gray-300 rounded outline-none"
         />

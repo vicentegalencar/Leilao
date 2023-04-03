@@ -7,7 +7,7 @@ const Profile = () => {
   const [cpf, setCPF] = useState('123.456.789-00');
 
   const handleSave = () => {
-    // Adicione aqui a lógica para salvar os dados do perfil.
+    
     console.log('Salvar perfil:', { name, email, password, cpf });
   };
 
