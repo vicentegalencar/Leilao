@@ -16,7 +16,10 @@ routes.post("/user/create", (req, res) => {
   req.body.birthday = new Date(req.body.birthday);
   const createUser = new CreateUser(repository);
   createUser.execute(req.body);
-  return res.status(201).send();
+  const token = jwt.sign({ id: req.body.id }, process.env.SECRET as string, {
+    expiresIn: 3600,
+  });
+  return res.json({ auth: true, token: token });
 });
 
 routes.post("/login", (req, res) => {
