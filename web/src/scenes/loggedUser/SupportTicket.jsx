@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 const SupportTicket = () => {
-  const [ticketId, setTicketId] = useState('ABC123');
-  const [userName, setUserName] = useState('John Doe');
+  const [ticketId, setTicketId] = useState('001');
+  const [userName, setUserName] = useState('Everton');
   const [ticketText, setTicketText] = useState('');
 
   const handleSubmit = (e) => {

@@ -1,90 +1,87 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-// import { LockClosedIcon } from '@heroicons/react/20/solid'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import registerIcon from "../assets/registerIcon.png";
+import Logo from "../assets/logo.png";
 
+const Register = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const flexBetween = "flex items-center justify-between";
 
-const flexBetween = "flex items-center justify-between";
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
-
-   
-
-const Login = () => {
   return (
     <div className="flex  items-center justify-center py-24 ">
-        <div className="w-full max-w-lg space-y-12 p-6 shadow-[0px_22px_70px_4px_rgba(0,0,0,0.56)] rounded-lg ">
-          <div>
-            <img
-              className="mx-auto h-20 w-auto"
-              src={`${registerIcon}`}
-              alt="Your Company"
-            />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Faça Login na sua conta
-            </h2>
-           
-          </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Endereço de email
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className=" my-3 relative block w-full rounded-md  py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-7"
-                  placeholder="Endereço de email"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Senha
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="my-3 relative block w-full rounded-md  py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-7"
-                  placeholder="Senha"
-                />
-              </div>
-            </div>
-
-
-            
-
-            <div className="flex items-center justify-between">
-              <div className="text-sm">
-                <a href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Ainda não criou uma conta?
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                </span>
-                ENTRAR
-              </button>
-            </div>
-          </form>
+      <div className="w-full max-w-lg space-y-12 p-6 shadow-[0px_22px_70px_4px_rgba(0,0,0,0.56)] rounded-lg ">
+        <div>
+          <img
+            className="mx-auto h-20 w-auto"
+            src={`${registerIcon}`}
+            alt="Your Company"
+          />
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            Realize seu login
+          </h2>
         </div>
-      </div>
-  )
-}
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <input type="hidden" name="remember" value="true" />
+          <div className="rounded-md shadow-sm space-y-5">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Email
+              </label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                placeholder="Email"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Senha
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Senha"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-export default Login
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
