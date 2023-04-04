@@ -22,20 +22,30 @@ const Index = () => {
                 </a>
               </RouterLink>
 
-              <a href="#" className={`${navLinks} text-2xl`}>
-                Leilões Ao vivo
-              </a>
-              <a href="#" className={`${navLinks} text-2xl`}>
-                Próximos Leilões
-              </a>
+    
+              
+              
+            </div>
+            <div className="space-x-9 text-center">
               <RouterLink to="/registerItem" style={{ textDecoration: "none" }}>
                 <a href="#" className={`${navLinks} text-2xl`}>
                   Anunciar
                 </a>
               </RouterLink>
-              
-            </div>
+              <RouterLink to="/profile" style={{ textDecoration: "none" }}>
+                <a href="#" className={`${navLinks} text-2xl`}>
+                  Perfil
+                </a>
+              </RouterLink>
+              <RouterLink to="/ticket" style={{ textDecoration: "none" }}>
+                <a href="#" className={`${navLinks} text-2xl`}>
+                  Suporte
+                </a>
+              </RouterLink>
+              </div>
             <div className={`${flexBetween} gap-9 flex grid-cols-2 `}>
+              
+            
               <RouterLink to="register" style={{ textDecoration: "none" }}>
                 <a href="#" className={`${navLinks} text-2xl`}>
                   Cadastro
