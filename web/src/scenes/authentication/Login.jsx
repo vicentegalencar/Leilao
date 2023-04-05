@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import registerIcon from "../assets/registerIcon.png";
 import Logo from "../assets/logo.png";
+import axios from 'axios';
+import Cookies from "js-cookie";
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +20,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    axios.post('http://localhost:4000/login', formData)
+    .then((response) =>{Cookies.set("token", response.data.token)})
   };
 
   return (

@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import registerIcon from "../assets/registerIcon.png";
-import Logo from "../assets/logo.png";
+import Cookies from "js-cookie";
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     cpf: "",
-    birthDate: "",
+    birthday: "",
     email: "",
     password: "",
+    phone: "",
   });
   const flexBetween = "flex items-center justify-between";
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +23,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    axios.post('http://localhost:4000/user/create', formData)
+    .then((response) =>{Cookies.set("token", response.token)})
   };
 
   return (
@@ -72,17 +76,17 @@ const Register = () => {
               />
             </div>
             <div>
-              <label htmlFor="birthDate" className="sr-only">
+              <label htmlFor="birthday" className="sr-only">
                 Data de Nascimento
               </label>
               <input
-                id="birthDate"
-                name="birthDate"
+                id="birthday"
+                name="birthday"
                 type="date"
                 autoComplete="off"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                value={formData.birthDate}
+                value={formData.birthday}
                 onChange={handleChange}
               />
             </div>
@@ -103,6 +107,22 @@ const Register = () => {
               />
             </div>
             <div>
+              <label htmlFor="email" className="sr-only">
+                phone
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="phone"
+                autoComplete="phone"
+                required
+                placeholder="phone"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                value={formData.phone}
+                onChange={handleChange}
+                />
+            </div>
+            <div>
               <label htmlFor="email-address" className="sr-only">
                 Email
               </label>
@@ -118,6 +138,7 @@ const Register = () => {
                 onChange={handleChange}
                 />
             </div>
+            
           </div>
 
           <div>

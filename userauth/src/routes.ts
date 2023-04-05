@@ -13,7 +13,9 @@ export const routes = express.Router();
 const repository = new PrismaRepository();
 
 routes.post("/user/create", (req, res) => {
+  console.log(req.body);
   req.body.birthday = new Date(req.body.birthday);
+
   const createUser = new CreateUser(repository);
   createUser.execute(req.body);
   const token = jwt.sign({ id: req.body.id }, process.env.SECRET as string, {
