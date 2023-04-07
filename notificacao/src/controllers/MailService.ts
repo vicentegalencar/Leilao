@@ -10,7 +10,7 @@ export interface Mailprops{
 
 export interface MailService{
     from: string, 
-    Sendmail:(propiedades: Mailprops) => Promise <void>
+    Sendmail:(propiedades: Mailprops) => void
 
 }
 
