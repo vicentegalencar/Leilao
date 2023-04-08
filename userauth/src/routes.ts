@@ -30,7 +30,7 @@ routes.post("/login", (req, res) => {
   repository.getUserInfo({ email }).then((user) => {
     if (user.password == password) {
       const token = jwt.sign({ id: user.id }, process.env.SECRET as string, {
-        expiresIn: 3600,
+        expiresIn: "7d",
       });
       return res.json({ auth: true, token: token });
     }
@@ -78,6 +78,13 @@ routes.post('/user/delete', verify_token, (req, res, next)=>{
   deleteUser.execute((req as UserIDRequest).userID).then(()=>{
     res.status(200).json({message: 'Usuario deletado do sistema com sucesso'})
   })
+})
+
+routes.get('/user/mail/list', verify_token, (req, res, next)=>{
+  const mailList = repository.mailList().then((list)=>{
+    res.json({list})
+  })
+  
 })
 
 function verify_token(req: any, res: any, next: any) {

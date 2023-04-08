@@ -21,4 +21,5 @@ export interface UserDatabase {
     updateUser: (id: string, props: UpdateUserProps) => Promise<void>;
     changePassword: (id: string, password: string) => Promise<void>;
     deleteUser: (id:string)=> Promise<void>;
+    mailList: ()=>Promise<string[]>
 }

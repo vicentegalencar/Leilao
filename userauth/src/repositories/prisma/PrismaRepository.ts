@@ -62,5 +62,9 @@ export class PrismaRepository implements UserDatabase {
       }
     })
   }
+
+  async mailList() {
+    return (await prisma.user.findMany()).map((u)=>{return u.email})
+  };
   
 }

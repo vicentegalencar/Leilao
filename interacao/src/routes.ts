@@ -14,14 +14,14 @@ const repository = new PrismaRepository();
 const auth = new UserAuth()
 
 routes.post('/ticket/create', auth.VerifyToken, (req:any, res, next) => {
-    const {reason} = req.body
-    const user_id = req.userInfo.id
-    const ticketController = new TicketController(repository);
-    ticketController.CreateTicket({reason, user_id}).then((ticket)=>{
-      return res.json(ticket)
-    })
-  });
-
+    const {reason} = req.body 
+    const user_id = req.userInfo.id 
+    const ticketController = new TicketController(repository); 
+    ticketController.CreateTicket({reason, user_id}).then((ticket)=>{ 
+      return res.json(ticket) 
+    }) 
+  }); 
+  
   routes.post('/ticket/message', auth.VerifyToken, (req:any, res, next)=>{
     const {text, ticketID} = req.body
     const user_id = req.userInfo.id
