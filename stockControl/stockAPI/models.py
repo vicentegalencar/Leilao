@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from django.utils.timezone import now
 from django.db import models
 
 # Create your models here.
@@ -14,7 +14,7 @@ class Item(models.Model):
     owner = models.CharField(max_length=200)
     usage_time = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
-    registration_date = models.DateTimeField(default=datetime.now())
+    registration_date = models.DateTimeField(default=now)
 
 
 
