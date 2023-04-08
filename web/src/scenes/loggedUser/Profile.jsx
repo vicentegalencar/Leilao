@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Logged from '../navbar/logged';
 
 const Profile = () => {
   const [name, setName] = useState('Multi Megaman');
@@ -12,7 +13,10 @@ const Profile = () => {
   };
 
   return (
+    
+
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
+      
       <div className="w-full max-w-xl p-6 bg-white rounded shadow">
         <h1 className="mb-4 text-2xl font-semibold">Perfil</h1>
         <div className="mb-4">
