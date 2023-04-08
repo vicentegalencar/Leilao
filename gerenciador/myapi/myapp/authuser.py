@@ -15,7 +15,7 @@ class AuthUser:
         token_header = request.headers.get("X-Access-Token")
         if not token_header:
             return JsonResponse({'error': 'Token não fornecido'}, status=401)
-        res = req.get("http://localhost:4000/user/info", headers={"x-access-token": token_header})
+        res = req.post("http://localhost:4000/user/info", headers={"x-access-token": token_header})
         res = json.loads(res.content)
         if res["auth"]:
             request.userInfo = res["userInfo"]

@@ -1,8 +1,8 @@
-import { create } from "domain";
 import { MailService, Mailprops } from "./MailService";
 import formData from 'form-data';
 import Mailgun from 'mailgun.js';
-import { Type } from "typescript";
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config()
 
 
 export class MailgunService implements MailService   { 
@@ -10,19 +10,16 @@ export class MailgunService implements MailService   {
     private mg:any;
     constructor (){
         const mailgun = new Mailgun(formData)
-        this.from="Mailgun Sandbox <postmaster@sandbox9f9134db25a545f6968a1579a57b9999.mailgun.org>"
+        this.from="Leilão Distribuido <postmaster@sandbox9f9134db25a545f6968a1579a57b9999.mailgun.org>"
         this.mg = mailgun.client({
             username: 'api',
-            key: '',
+            key: process.env.MAILGUN_KEY as string,
         });
-        console.log("aaaaaaaaaaaaaaaaaaaaaaa")
         
     }  
     Sendmail ({to, subject, text }: Mailprops ){
-        console.log(to[0]);
-        
         this.mg.messages
-        .create('sandboxc89f125230294989bdce25bf196e972c.mailgun.org', {
+        .create('sandbox9f9134db25a545f6968a1579a57b9999.mailgun.org', {
             from: this.from,
             to,
             subject,
