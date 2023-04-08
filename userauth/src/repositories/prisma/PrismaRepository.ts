@@ -4,10 +4,7 @@ import { UpdateUserProps } from "../../use-cases/UserCases";
 import { UserDatabase, UserProps, GetUserInfoProps } from "../UserRepository";
 
 export class PrismaRepository implements UserDatabase {
-  async createUser({ name, cpf, birthday, email, phone, password, roles }: UserProps) {
-    const rolesIds = await prisma.role.findMany({
-      where: {name: {in: roles}}, select: {id: true}
-    })
+  async createUser({ name, cpf, birthday, email, phone, password,  }: UserProps) {    
     await prisma.user.create({
       data: {
         name,
@@ -16,7 +13,6 @@ export class PrismaRepository implements UserDatabase {
         email,
         phone,
         password,
-        roles: {connect: rolesIds.map(id => (id))}
       },
     });
   }

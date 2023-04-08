@@ -8,7 +8,6 @@ export interface UserProps {
     email: string;
     phone: string;
     password: string;
-    roles: string[];
 }
 
 export interface GetUserInfoProps {

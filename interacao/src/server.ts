@@ -1,5 +1,5 @@
 import express from 'express'
-// import cors from 'cors'
+import cors from 'cors'
 import { routes } from './routes'
 
 
@@ -8,6 +8,7 @@ import { Server } from 'socket.io'
 import { PrismaRepository } from './repositories/prisma/PrismaRepository'
 import { CommentAuction } from './use-cases/CommentAuction'
 import { SocketClient } from '../definition/definition'
+import { log } from 'console'
 
 
 
@@ -22,11 +23,17 @@ const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 const app = express()
 app.use(express.json())
 app.use(routes)
+app.use(cors());
 const repository = new PrismaRepository()
 
 // Inicia o sevidor
 const server = http.createServer(app)
-const io = new Server(server)
+const io = new Server(server, {
+    cors: {
+      origin: '*', // Permitir conexões de qualquer origem. Ajuste de acordo com suas necessidades.
+      methods: ['GET', 'POST'],
+    },
+  });
 
 
 io.on('connection', (client: SocketClient)=>{
@@ -38,13 +45,16 @@ io.on('connection', (client: SocketClient)=>{
 
     client.on('comment', (msg)=>{
         const commentAuction = new CommentAuction(repository)
-        commentAuction.execute({
-            auction_id: client.auction_id as string,
-            user_id: client.user_id as string,
-            text: msg.text
-        })
+        // commentAuction.execute({
+        //     auction_id: client.auction_id as string,
+        //     user_id: client.user_id as string,
+        //     text: msg.text
+        // })
+        console.log(msg);
         
         io.sockets.sockets.forEach(async (c: SocketClient)=>{
+            console.log("ola");
+            
             if(c.auction_id == client.auction_id && c.user_id !== client.user_id) {
                 c.emit('comment', {user_id: client.user_id, message: msg})
             }

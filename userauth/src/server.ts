@@ -1,20 +1,23 @@
-import express from 'express'
-// import cors from 'cors'
-import { routes } from './routes'
+import express from 'express';
+import cors from 'cors';
+import { routes } from './routes';
 
+const PORT = process.env.PORT || 4000;
 
-// Porta do servidor
-const PORT = process.env.PORT || 4000
+const HOSTNAME = process.env.HOSTNAME || 'http://localhost';
 
-// Host do servidor
-const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
+const app = express();
+app.use(express.json());
 
-// App Express
-const app = express()
-app.use(express.json())
-app.use(routes)
+app.use(cors({
+    origin: "http://127.0.0.1:5173", // Substitua pela URL do seu frontend, se necessário
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
-// Inicia o sevidor
+app.use(routes);
+
+// Inicia o servidor
 app.listen(PORT, () => {
-    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
-})
+    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`);
+});

@@ -7,6 +7,7 @@ const Index = () => {
   return (
     <div>
       <LiveAuction />
+      
       {/* <NextAuctions /> */}
     </div>
   );

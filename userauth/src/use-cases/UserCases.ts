@@ -7,7 +7,6 @@ export interface CreateUserProps {
     email: string;
     phone: string;
     password: string;
-    roles: string[];
 }
 
 export interface UpdateUserProps {
@@ -29,7 +28,6 @@ export class CreateUser {
         email,
         password,
         phone,
-        roles
     }: CreateUserProps) {
         await this.userDatabase.createUser({
             name,
@@ -38,7 +36,6 @@ export class CreateUser {
             email,
             password,
             phone,
-            roles
         })
     }
 }
