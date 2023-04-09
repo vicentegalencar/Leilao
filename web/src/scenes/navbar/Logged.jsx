@@ -8,7 +8,7 @@ const navLinks = "text-lg hover:text-indigo-300"
 
 
 
-const Index = () => {
+const Logged = () => {
   return (
     <nav className="">
       <div className={`${flexBetween}fixed top-0 z-30 w-full py-5 shadow-md `}>
@@ -46,16 +46,7 @@ const Index = () => {
             <div className={`${flexBetween} gap-9 flex grid-cols-2 `}>
               
             
-              <RouterLink to="register" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
-                  Cadastro
-                </a>
-              </RouterLink>
-              <RouterLink to="login" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
-                  Login
-                </a>
-              </RouterLink>
+              
             </div>
           </div>
         </div>
@@ -64,4 +55,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Logged;

@@ -15,7 +15,7 @@ export class UserAuth implements AuthenticationService {
           req.userInfo = ver.data.userInfo
           next();
         }
-        return res.json(ver)
+        
     }).catch((err)=>{
       return res
       .status(401)

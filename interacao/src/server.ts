@@ -8,8 +8,6 @@ import { Server } from 'socket.io'
 import { PrismaRepository } from './repositories/prisma/PrismaRepository'
 import { CommentAuction } from './use-cases/CommentAuction'
 import { SocketClient } from '../definition/definition'
-import { log } from 'console'
-import axios from 'axios'
 
 
 
@@ -23,9 +21,20 @@ const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 // App Express
 const app = express()
 app.use(express.json())
-app.use(routes)
-app.use(cors());
 const repository = new PrismaRepository()
+
+
+app.use(cors({
+    origin: "http://127.0.0.1:5173", // Substitua pela URL do seu frontend, se necessário
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-access-token"],
+}));
+
+
+app.use(routes)
+
+
+
 
 // Inicia o sevidor
 const server = http.createServer(app)
