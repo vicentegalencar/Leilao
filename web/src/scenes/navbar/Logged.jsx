@@ -2,6 +2,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import Logo from "../assets/logo.png";
+import Icon from "../assets/icon.png";
 
 const flexBetween = "flex items-center justify-between";
 const navLinks = "text-lg hover:text-indigo-300"
@@ -16,37 +17,42 @@ const Logged = () => {
           <div className={`${flexBetween} w-full`}>
             <div className={`${flexBetween} gap-16  `}>
               <img src={Logo} alt="Logo" className={`w-12`} />
-              <RouterLink to="/" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
+              <RouterLink to="/homeLogged" style={{ textDecoration: "none" }}>
+                <span href="#" className={`${navLinks} text-2xl`}>
                   Home
-                </a>
+                </span>
               </RouterLink>
 
     
               
               
             </div>
-            <div className="space-x-9 text-center">
+            <div className="space-x-32 text-center">
               <RouterLink to="/registerItem" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
+                <span href="#" className={`${navLinks} text-2xl`}>
                   Anunciar
-                </a>
+                </span>
               </RouterLink>
               <RouterLink to="/profile" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
+                <span href="#" className={`${navLinks} text-2xl`}>
                   Perfil
-                </a>
+                </span>
               </RouterLink>
               <RouterLink to="/ticket" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
+                <span href="#" className={`${navLinks} text-2xl`}>
                   Suporte
-                </a>
+                </span>
               </RouterLink>
               </div>
             <div className={`${flexBetween} gap-9 flex grid-cols-2 `}>
               
             
-              
+            <img src={Icon} alt="icon" className={`w-12`} />
+            <RouterLink to="/" style={{ textDecoration: "none" }}>
+                <span href="#" className={`${navLinks} text-2xl`}>
+                  Sair
+                </span>
+              </RouterLink>
             </div>
           </div>
         </div>

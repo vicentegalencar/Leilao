@@ -24,7 +24,11 @@ class ItemList(generics.ListCreateAPIView):
     # permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
-        print(self.request.userInfo)
         return super().get_queryset()
+    
+    def create(self, request, *args, **kwargs):
+        print(request.data["foto"])
+        return super().create(request, *args, **kwargs)
+
 
 

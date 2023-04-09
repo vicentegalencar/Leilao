@@ -15,7 +15,7 @@ class Item(models.Model):
     usage_time = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
     registration_date = models.DateTimeField(default=now)
-
+    foto = models.ImageField()
 
 
     def __str__(self):

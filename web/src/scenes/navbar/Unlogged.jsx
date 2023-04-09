@@ -15,9 +15,9 @@ const Unlogged = () => {
             <div className={`${flexBetween} gap-16  `}>
               <img src={Logo} alt="Logo" className={`w-12`} />
               <RouterLink to="/" style={{ textDecoration: "none" }}>
-                <a href="#" className={`${navLinks} text-2xl`}>
+                <span href="#" className={`${navLinks} text-2xl`}>
                   Home
-                </a>
+                </span>
               </RouterLink>
             </div>
 

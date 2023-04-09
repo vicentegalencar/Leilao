@@ -1,21 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import io from 'socket.io-client';
+import Cookies from "js-cookie";
+import React, { useState, useEffect, useRef } from "react";
+import io from "socket.io-client";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [inputMessage, setInputMessage] = useState("");
+  const [username, setUsername] = useState("");
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect('http://localhost:4001'); 
+    
+    socketRef.current = io.connect("http://localhost:4001");
 
-    socketRef.current.emit('ehlo', {auction_id:1,user_id:Math.random()});
+    socketRef.current.emit("ehlo", { auction_id: 1, user_data: JSON.parse(Cookies.get("userData")) }); // Inclua o nome de usuário no payload
 
-    socketRef.current.on('comment', (message) => {
+    socketRef.current.on("comment", (message) => {
       console.log(message);
-      setMessages((prevMessages) => [...prevMessages, message.message.text]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: message.message.text, user: message.message.user }, // Adicione o nome do usuário à mensagem
+      ]);
     });
-    console.log("oi");
     return () => {
       socketRef.current.disconnect();
     };
@@ -23,20 +28,21 @@ const Chat = () => {
 
   const sendMessage = (e) => {
     e.preventDefault();
-
+  
     if (inputMessage.trim()) {
-      socketRef.current.emit('comment', {text:inputMessage});
-      setInputMessage('');
+      const message = { text: inputMessage, user: JSON.parse(Cookies.get("userData")).name }; // Crie um objeto de mensagem com o texto e o nome do usuário
+      setMessages((prevMessages) => [...prevMessages, message]); // Adicione a mensagem enviada ao estado 'messages'
+      socketRef.current.emit("comment", message); // Envie a mensagem para o servidor
+      setInputMessage("");
     }
   };
 
-
   return (
-    <div className="flex flex-col w-full  h-96 border border-gray-300 rounded bg-white">
+    <div className="flex flex-col w-full h-96 border border-gray-300 rounded bg-white">
       <div className="flex-1 p-4 overflow-y-auto">
         {messages.map((message, index) => (
           <div key={index} className="mb-2">
-            {message}
+            <strong>{message.user}:</strong> {message.text} {/* Mostre o nome do usuário ao lado da mensagem */}
           </div>
         ))}
       </div>

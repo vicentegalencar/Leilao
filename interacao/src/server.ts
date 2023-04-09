@@ -65,10 +65,10 @@ io.on('connection', (client: any)=>{
         // })
         console.log(msg);
         
-        io.sockets.sockets.forEach(async (c: SocketClient)=>{
+        io.sockets.sockets.forEach(async (c: any)=>{
             console.log("ola");
             
-            if(c.auction_id == client.auction_id && c.user_id !== client.user_id) {
+            if(c.auction_id == client.auction_id && c.user_data.id !== client.user_data.id) {
                 c.emit('comment', {user_id: client.user_data.user_id, message: msg, display_name: client.user_data.display_name})
             }
         })

@@ -28,44 +28,44 @@ const LiveAuction = () => {
   return (
     <div>
       <div className=" sm:py-16">
-        <div class="mx-auto max-w-6xl  px-6 lg:px-8">
-          <h2 class=" text-center font-bold tracking-tight text-gray-900 sm:text-5xl">
+        <div className="mx-auto max-w-6xl  px-6 lg:px-8">
+          <h2 className=" text-center font-bold tracking-tight text-gray-900 sm:text-5xl">
             Leilões Ativos
           </h2>
-          <div class="mx-auto  grid  gap-y-10 gap-x-8 border-t border-gray-200 pt-10  grid-cols-3 ">
-          <RouterLink to="/detailed" style={{ textDecoration: "none" }} className="">
-              <article class=" p-4 flex flex-col  rounded-md shadow-xl hover:shadow-2xl">
+          <div className="mx-auto  grid  gap-y-10 gap-x-8 border-t border-gray-200 pt-10  grid-cols-3 ">
+          <RouterLink to="/detailed" style={{ textDecoration: "none" }} class="">
+              <article className=" p-4 flex flex-col  rounded-md shadow-xl hover:shadow-2xl">
                 <img className="w-full" src={`${registerIcon}`} />
-                <div class="group relative pt-3 w-full">
+                <div className="group relative pt-3 w-full">
                   <div>
-                    <time class="text-gray-600">Inicio: 16:40</time>
+                    <time className="text-gray-600">Inicio: 16:40</time>
                     <a
                       href="#"
-                      class="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600  hover:bg-gray-100"
+                      className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600  hover:bg-gray-100"
                     >
                       Tecnologia
                     </a>
                   </div>
-                  <h3 class="mt-3 text-lg font-bold text-bg-gray-900 ">
+                  <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
                     CARRO BARATO VENDER MUITO
                   </h3>
 
 
 
 
-                  <h3 class="mt-3 text-md font-bold text-bg-gray-900  ">
+                  <h3 className="mt-3 text-md font-bold text-bg-gray-900  ">
                     Tempo para acabar:
                   </h3>
-                  <time class="text-gray-500 mt-4 ">{seconds}</time>
+                  <time className="text-gray-500 mt-4 ">{seconds}</time>
                 </div>
-                <div class="flex pt-3 w-full space-x-2 mt-4">
+                <div className="flex pt-3 w-full space-x-2 mt-4">
                 <img className="w-10 " src={`${lance}`} />
-                <h3 class=" text-md font-bold text-bg-gray-900  mt-4 ">
+                <h3 className=" text-md font-bold text-bg-gray-900  mt-4 ">
                      R$910,20
                   </h3>
                   
 
-                  <time class="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
+                  <time className="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
                   <img className="w-5 mt-4 " src={`${user}`} />
                   
                 </div>
@@ -73,35 +73,35 @@ const LiveAuction = () => {
             </RouterLink>
 
             <RouterLink to="/" style={{ textDecoration: "none" }}>
-              <article class="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
+              <article className="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
                 <img className="w-full" src={`${registerIcon}`} />
-                <div class="group relative pt-3 w-full">
+                <div className="group relative pt-3 w-full">
                   <div>
-                    <time class="text-gray-500">Inicio: 16:40</time>
+                    <time className="text-gray-500">Inicio: 16:40</time>
                     <a
                       href="#"
-                      class="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                      className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
                     >
                       Tecnologia
                     </a>
                   </div>
-                  <h3 class="mt-3 text-lg font-bold text-bg-gray-900 ">
+                  <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
                     CARRO BARATO VENDER MUITO
                   </h3>
 
-                  <h3 class="mt-3 text-md font-bold text-bg-gray-900  ">
+                  <h3 className="mt-3 text-md font-bold text-bg-gray-900  ">
                     Tempo para acabar:
                   </h3>
-                  <time class="text-gray-500 mt-4 ">{seconds}</time>
+                  <time className="text-gray-500 mt-4 ">{seconds}</time>
                 </div>
-                <div class="flex pt-3 w-full space-x-2 mt-4">
+                <div className="flex pt-3 w-full space-x-2 mt-4">
                 <img className="w-10 " src={`${lance}`} />
-                <h3 class=" text-md font-bold text-bg-gray-900  mt-4 ">
+                <h3 className=" text-md font-bold text-bg-gray-900  mt-4 ">
                      R$910,20
                   </h3>
                   
 
-                  <time class="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
+                  <time className="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
                   <img className="w-5 mt-4 " src={`${user}`} />
                   
                 </div>
@@ -109,35 +109,35 @@ const LiveAuction = () => {
             </RouterLink>
 
             <RouterLink to="/" style={{ textDecoration: "none" }}>
-              <article class="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
+              <article className="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
                 <img className="w-full" src={`${registerIcon}`} />
-                <div class="group relative pt-3 w-full">
+                <div className="group relative pt-3 w-full">
                   <div>
-                    <time class="text-gray-500">Inicio: 16:40</time>
+                    <time className="text-gray-500">Inicio: 16:40</time>
                     <a
                       href="#"
-                      class="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
+                      className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
                     >
                       Tecnologia
                     </a>
                   </div>
-                  <h3 class="mt-3 text-lg font-bold text-bg-gray-900 ">
+                  <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
                     CARRO BARATO VENDER MUITO
                   </h3>
 
-                  <h3 class="mt-3 text-md font-bold text-bg-gray-900  ">
+                  <h3 className="mt-3 text-md font-bold text-bg-gray-900  ">
                     Tempo para acabar:
                   </h3>
-                  <time class="text-gray-500 mt-4 ">{seconds}</time>
+                  <time className="text-gray-500 mt-4 ">{seconds}</time>
                 </div>
-                <div class="flex pt-3 w-full space-x-2 mt-4">
+                <div className="flex pt-3 w-full space-x-2 mt-4">
                 <img className="w-10 " src={`${lance}`} />
-                <h3 class=" text-md font-bold text-bg-gray-900  mt-4 ">
+                <h3 className=" text-md font-bold text-bg-gray-900  mt-4 ">
                      R$910,20
                   </h3>
                   
 
-                  <time class="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
+                  <time className="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
                   <img className="w-5 mt-4 " src={`${user}`} />
                   
                 </div>

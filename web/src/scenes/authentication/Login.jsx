@@ -25,6 +25,8 @@ const Register = () => {
     e.preventDefault();
     axios.post("http://localhost:4000/login", formData).then((response) => {
       Cookies.set("token", response.data.token);
+      Cookies.set("userData", JSON.stringify(response.data.user));
+      console.log(response.data);
       navigate("/homeLogged");
     });
   };

@@ -32,7 +32,7 @@ routes.post("/login", (req, res) => {
       const token = jwt.sign({ id: user.id }, process.env.SECRET as string, {
         expiresIn: "7d",
       });
-      return res.json({ auth: true, token: token });
+      return res.json({ auth: true, token: token, user:user });
     }
     return res.status(500).json({ message: "Login Inválido" });
   });
