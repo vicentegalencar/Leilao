@@ -9,6 +9,7 @@ import { PrismaRepository } from './repositories/prisma/PrismaRepository'
 import { CommentAuction } from './use-cases/CommentAuction'
 import { SocketClient } from '../definition/definition'
 import { log } from 'console'
+import axios from 'axios'
 
 
 
@@ -36,14 +37,17 @@ const io = new Server(server, {
   });
 
 
-io.on('connection', (client: SocketClient)=>{
+io.on('connection', (client: any)=>{
     console.log("Cliente conectado")
-    client.on('ehlo', (msg)=>{
+
+    
+
+    client.on('ehlo', (msg: any)=>{
         client.auction_id = msg.auction_id
-        client.user_id = msg.user_id
+        client.user_data = msg.user_data
     })
 
-    client.on('comment', (msg)=>{
+    client.on('comment', (msg: any)=>{
         const commentAuction = new CommentAuction(repository)
         // commentAuction.execute({
         //     auction_id: client.auction_id as string,
@@ -56,7 +60,7 @@ io.on('connection', (client: SocketClient)=>{
             console.log("ola");
             
             if(c.auction_id == client.auction_id && c.user_id !== client.user_id) {
-                c.emit('comment', {user_id: client.user_id, message: msg})
+                c.emit('comment', {user_id: client.user_data.user_id, message: msg, display_name: client.user_data.display_name})
             }
         })
     })
