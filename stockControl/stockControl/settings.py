@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+from corsheaders.defaults import default_headers
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'stockAPI',
     'rest_framework',
     'django.contrib.admin',
@@ -41,7 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +56,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'stockControl.authuser.AuthUser'
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5173",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:5173",
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "x-access-token",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'stockControl.urls'
 

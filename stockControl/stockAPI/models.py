@@ -12,10 +12,10 @@ class Item(models.Model):
 
     name = models.CharField(max_length=200)
     owner = models.CharField(max_length=200)
-    usage_time = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
     registration_date = models.DateTimeField(default=now)
-    foto = models.ImageField()
+    description = models.CharField(max_length=500)
+    photo = models.ImageField(upload_to="images/")
 
 
     def __str__(self):
