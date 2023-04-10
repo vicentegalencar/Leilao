@@ -5,8 +5,65 @@ import user from "../assets/usernumber.png";
 import lance from "../assets/bid.png";
 import { Link as RouterLink } from "react-router-dom";
 import Countdown from "../util/Countdown";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const LiveAuction = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    owner: JSON.parse(Cookies.get("userData")).id,
+    description: "",
+    category: "",
+    firstBid: "",
+    endTime: "",
+    photo: null,
+  });
+
+  const [auctionItems, setAuctionItems] = useState([]);
+
+  const fetchItems = async () => {
+    const response = await axios.get("http://127.0.0.1:9000/itens", {
+      headers: {
+        "x-access-token": Cookies.get("token"),
+      },
+    });
+    return response.data;
+  };
+
+  const fetchAuctions = async () => {
+    const response = await axios.get("http://127.0.0.1:8000/Leilao/", {
+      headers: {
+        "x-access-token": Cookies.get("token"),
+      },
+    });
+    return response.data;
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [itemsData, auctionsData] = await Promise.all([
+          fetchItems(),
+          fetchAuctions(),
+        ]);
+
+        // Mapear e combinar itemsData e auctionsData
+        const combinedData = itemsData.map((item) => {
+          const auction = auctionsData.find(
+            (auction) => auction.itemId === item.id
+          );
+          return { ...item, ...auction };
+        });
+
+        setAuctionItems(combinedData);
+      } catch (error) {
+        console.error("Erro ao buscar dados dos servidores:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const timetoend = new Countdown("22 March 2023 23:59:59 GMT-0300");
   const [seconds, setSeconds] = useState(0);
   useEffect(() => {
@@ -33,116 +90,54 @@ const LiveAuction = () => {
             Leilões Ativos
           </h2>
           <div className="mx-auto  grid  gap-y-10 gap-x-8 border-t border-gray-200 pt-10  grid-cols-3 ">
-          <RouterLink to="/detailed" style={{ textDecoration: "none" }} class="">
-              <article className=" p-4 flex flex-col  rounded-md shadow-xl hover:shadow-2xl">
-                <img className="w-full" src={`${registerIcon}`} />
-                <div className="group relative pt-3 w-full">
-                  <div>
-                    <time className="text-gray-600">Inicio: 16:40</time>
-                    <a
-                      href="#"
-                      className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600  hover:bg-gray-100"
-                    >
-                      Tecnologia
-                    </a>
+            {auctionItems.map((auctionItem) => (
+              <RouterLink
+                key={auctionItem.id}
+                to={`/detailed/${auctionItem.id}`}
+                style={{ textDecoration: "none" }}
+                class=""
+              >
+                <article className=" p-4 flex flex-col  rounded-md shadow-xl hover:shadow-2xl">
+                  <img className="w-full" src={auctionItem.photo} />
+                  <div className="group relative pt-3 w-full">
+                    <div>
+                      <time className="text-gray-600">
+                        Inicio: {auctionItem.startTime}
+                      </time>
+                      <a
+                        href="#"
+                        className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600  hover:bg-gray-100"
+                      >
+                        {auctionItem.category}
+                      </a>
+                    </div>
+                    <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
+                      {auctionItem.name}
+                    </h3>
+
+                    <div className="mt-4">
+                      
+                      <input 
+                      className="bg-gray-200"
+                      type="date" value={auctionItem.endTime} />
+                    </div>
                   </div>
-                  <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
-                    CARRO BARATO VENDER MUITO
-                  </h3>
+                  <div className="flex pt-3  space-x-2 mt-4">
+                    <img className="w-10 " src={`${lance}`} />
+                    <h3 className=" text-md font-bold text-bg-gray-900 mt-4 ">
+                      R${auctionItem.firstBid}
+                    </h3>
 
-
-
-
-                  <h3 className="mt-3 text-md font-bold text-bg-gray-900  ">
-                    Tempo para acabar:
-                  </h3>
-                  <time className="text-gray-500 mt-4 ">{seconds}</time>
-                </div>
-                <div className="flex pt-3 w-full space-x-2 mt-4">
-                <img className="w-10 " src={`${lance}`} />
-                <h3 className=" text-md font-bold text-bg-gray-900  mt-4 ">
-                     R$910,20
-                  </h3>
-                  
-
-                  <time className="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
-                  <img className="w-5 mt-4 " src={`${user}`} />
-                  
-                </div>
-              </article>
-            </RouterLink>
-
-            <RouterLink to="/" style={{ textDecoration: "none" }}>
-              <article className="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
-                <img className="w-full" src={`${registerIcon}`} />
-                <div className="group relative pt-3 w-full">
-                  <div>
-                    <time className="text-gray-500">Inicio: 16:40</time>
-                    <a
-                      href="#"
-                      className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
-                    >
-                      Tecnologia
-                    </a>
+                    
+                      <time className="text-gray-500 mt-4 pl-24 rounded-md text-lg ">
+                        10
+                      </time>
+                      <img className="w-4 h-5 mt-5 " src={`${user}`} />
+                    
                   </div>
-                  <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
-                    CARRO BARATO VENDER MUITO
-                  </h3>
-
-                  <h3 className="mt-3 text-md font-bold text-bg-gray-900  ">
-                    Tempo para acabar:
-                  </h3>
-                  <time className="text-gray-500 mt-4 ">{seconds}</time>
-                </div>
-                <div className="flex pt-3 w-full space-x-2 mt-4">
-                <img className="w-10 " src={`${lance}`} />
-                <h3 className=" text-md font-bold text-bg-gray-900  mt-4 ">
-                     R$910,20
-                  </h3>
-                  
-
-                  <time className="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
-                  <img className="w-5 mt-4 " src={`${user}`} />
-                  
-                </div>
-              </article>
-            </RouterLink>
-
-            <RouterLink to="/" style={{ textDecoration: "none" }}>
-              <article className="  p-4 flex flex-col shadow-xl hover:shadow-2xl rounded-md">
-                <img className="w-full" src={`${registerIcon}`} />
-                <div className="group relative pt-3 w-full">
-                  <div>
-                    <time className="text-gray-500">Inicio: 16:40</time>
-                    <a
-                      href="#"
-                      className="  rounded-full bg-gray-200 m-2 px-3 font-medium text-gray-600 hover:bg-gray-100"
-                    >
-                      Tecnologia
-                    </a>
-                  </div>
-                  <h3 className="mt-3 text-lg font-bold text-bg-gray-900 ">
-                    CARRO BARATO VENDER MUITO
-                  </h3>
-
-                  <h3 className="mt-3 text-md font-bold text-bg-gray-900  ">
-                    Tempo para acabar:
-                  </h3>
-                  <time className="text-gray-500 mt-4 ">{seconds}</time>
-                </div>
-                <div className="flex pt-3 w-full space-x-2 mt-4">
-                <img className="w-10 " src={`${lance}`} />
-                <h3 className=" text-md font-bold text-bg-gray-900  mt-4 ">
-                     R$910,20
-                  </h3>
-                  
-
-                  <time className="text-gray-500 mt-4 pl-32 rounded-md text-lg ">12</time>
-                  <img className="w-5 mt-4 " src={`${user}`} />
-                  
-                </div>
-              </article>
-            </RouterLink>
+                </article>
+              </RouterLink>
+            ))}
           </div>
         </div>
       </div>

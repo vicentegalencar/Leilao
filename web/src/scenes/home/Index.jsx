@@ -1,5 +1,4 @@
 import React from "react";
-import NextAuctions from "./NextAuctions";
 import LiveAuction from "./LiveAuction";
 const flexBetween = "flex items-center justify-between";
 import Unlogged from "../navbar/unlogged";
@@ -9,7 +8,6 @@ const Index = () => {
       <Unlogged/>
       <LiveAuction />
       
-      {/* <NextAuctions /> */}
     </div>
   );
 };

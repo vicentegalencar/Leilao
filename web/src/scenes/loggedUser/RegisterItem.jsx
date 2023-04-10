@@ -127,7 +127,7 @@ const RegisterItem = () => {
         </div>
 
         <div className="w-full  max-w-2xl rounded-lg p-5 bg-white mt-12">
-          <form action="">
+          <form action="" className="place-content-center">
             <p className="mb-3">Escolha uma imagem do seu produto</p>
             <div>
               <input
@@ -174,7 +174,6 @@ const RegisterItem = () => {
                     autoComplete="off"
                     required
                     className=" my-2 relative block w-full rounded-md  py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 placeholder:pl-2 focus:z-10 sm:text-sm sm:leading-7"
-                    placeholder="Tempo de venda em meses"
                     value={formData.endTime}
                     onChange={handleChange}
                   />
