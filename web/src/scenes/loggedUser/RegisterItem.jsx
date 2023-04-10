@@ -27,7 +27,7 @@ const RegisterItem = () => {
       .then(async (resposta) => {
         const response = await axios.post(
           "http://127.0.0.1:8000/Leilao/",
-          formData,
+          {...formData,itemID:resposta.data.id},
           {
             headers: {
               "x-access-token": Cookies.get("token"),

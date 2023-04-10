@@ -50,11 +50,11 @@ const LiveAuction = () => {
         // Mapear e combinar itemsData e auctionsData
         const combinedData = itemsData.map((item) => {
           const auction = auctionsData.find(
-            (auction) => auction.itemId === item.id
+            (auction) => auction.itemID === item.id
           );
           return { ...item, ...auction };
         });
-
+        console.log(auctionsData);
         setAuctionItems(combinedData);
       } catch (error) {
         console.error("Erro ao buscar dados dos servidores:", error);
@@ -64,9 +64,20 @@ const LiveAuction = () => {
     fetchData();
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+  
+    return `${year}-${month}-${day}`;
+  };
+
+
   const timetoend = new Countdown("22 March 2023 23:59:59 GMT-0300");
   const [seconds, setSeconds] = useState(0);
   useEffect(() => {
+  
     const interval = setInterval(() => {
       setSeconds(
         (seconds) =>
@@ -102,7 +113,7 @@ const LiveAuction = () => {
                   <div className="group relative pt-3 w-full">
                     <div>
                       <time className="text-gray-600">
-                        Inicio: {auctionItem.startTime}
+                        Inicio: {formatDate(auctionItem.registration_date)}
                       </time>
                       <a
                         href="#"
@@ -119,7 +130,7 @@ const LiveAuction = () => {
                       
                       <input 
                       className="bg-gray-200"
-                      type="date" value={auctionItem.endTime} />
+                      type="datetime" value={auctionItem.endTime} />
                     </div>
                   </div>
                   <div className="flex pt-3  space-x-2 mt-4">

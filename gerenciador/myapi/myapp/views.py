@@ -12,8 +12,9 @@ from datetime import datetime
 class ListaLeilao(generics.ListCreateAPIView):
 
     def create(self, request, *args, **kwargs):
-        mailservice = MailService("http://localhost:4002")
-        mailservice.send([request.userInfo["email"]], "Seu novo leilão foi iniciado", f'Olá {request.userInfo["name"]}, \n\n Seu novo item foi colocado para leilão. Aqui estão as informações. \n\n{request.data}' )
+        print(request.data)
+        # mailservice = MailService("http://localhost:4002")
+        # mailservice.send([request.userInfo["email"]], "Seu novo leilão foi iniciado", f'Olá {request.userInfo["name"]}, \n\n Seu novo item foi colocado para leilão. Aqui estão as informações. \n\n{request.data}' )
         return super().create(request, *args, **kwargs)
 
     queryset = Leilao.objects.all()

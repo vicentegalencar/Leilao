@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here
 
 class Leilao(models.Model):
+    itemID = models.IntegerField(default=1)
     name = models.CharField(max_length=100, null=False, blank=False)
     owner = models.CharField(max_length=100, null=False, blank=False)
     firstBid = models.DecimalField(max_digits=50, decimal_places=2, null=False, blank=False)
