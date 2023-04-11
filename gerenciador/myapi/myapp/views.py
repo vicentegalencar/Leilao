@@ -20,6 +20,7 @@ class ListaLeilao(generics.ListCreateAPIView):
     queryset = Leilao.objects.all()
     serializer_class = LeilaoSerializer
 
+
     def get_object(self):
         return self.queryset.get(pk=id)
 
@@ -45,3 +46,7 @@ class ListaLeiloesAtivos(generics.ListAPIView):
     queryset = Leilao.objects.filter(endTime__lt=datetime.now())
     serializer_class = LeilaoSerializer
 
+class HistoricoLances(generics.ListAPIView):
+
+    queryset =  Lance.objects.filter()
+    serializer_class = LanceSerializer
