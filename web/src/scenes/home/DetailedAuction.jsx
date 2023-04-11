@@ -45,6 +45,21 @@ const DetailedAuction = () => {
 
   };
 
+  const handlebutton = ( async(valor)=>{
+
+    console.log(typeof(auctionItems.actualBid));
+    await axios.post(`http://127.0.0.1:8000/Lance/`,{leilao:id,usuario:JSON.parse(Cookies.get("userData")).id,valor: parseFloat(auctionItems.actualBid)  + valor}, {
+      headers: {
+        "x-access-token": Cookies.get("token"),
+      },
+    })
+    .then((response)=>{
+      const newItem = auctionItems
+      newItem.actualBid = response.data.valor
+      setAuctionItems({...newItem})
+    })
+  })
+
   useEffect(() => {
     fetchAuctions()
     fetchItems()
@@ -107,24 +122,53 @@ const DetailedAuction = () => {
                   Escolha seu lance
                 </h3>
                 <div className=" grid-cols-1 space-x-7 ">
-                  <button className="p-4 text-lg rounded-full bg-green-400 border-2 border-black ">
+                  <button 
+                  className="p-4 text-lg rounded-full bg-green-400 border-2 border-black "
+                  onClick={()=>{
+                    handlebutton(35.00)
+                  }}
+                  >
                     +R$35,00
                   </button>
-                  <button className="p-4 text-lg rounded-full bg-green-400 border-2 border-black ">
-                    +R$70,00
-                  </button>
-                  <button className="p-4 text-lg rounded-full bg-green-400 border-2 border-black ">
+                  <button 
+                  className="p-4 text-lg rounded-full bg-green-400 border-2 border-black "
+                  onClick={()=>{
+                    handlebutton(80.00)
+                  }}
+                  >
+                    +R$80,00
+                  </button><button 
+                  className="p-4 text-lg rounded-full bg-green-400 border-2 border-black "
+                  onClick={()=>{
+                    handlebutton(120.00)
+                  }}
+                  >
                     +R$120,00
                   </button>
                 </div>
                 <div className=" grid-cols-1 space-x-4 pt-5 ">
-                  <button className="p-4 text-lg rounded-full bg-green-400 border-2 border-black ">
+                <button 
+                  className="p-4 text-lg rounded-full bg-green-400 border-2 border-black "
+                  onClick={()=>{
+                    handlebutton(200.00)
+                  }}
+                  >
                     +R$200,00
                   </button>
-                  <button className="p-4 text-lg rounded-full bg-green-400 border-2 border-black ">
+                  <button 
+                  className="p-4 text-lg rounded-full bg-green-400 border-2 border-black "
+                  onClick={()=>{
+                    handlebutton(500.00)
+                  }}
+                  >
                     +R$500,00
                   </button>
-                  <button className="p-4 text-lg rounded-full bg-green-400 border-2 border-black ">
+                  <button 
+                  className="p-4 text-lg rounded-full bg-green-400 border-2 border-black "
+                  onClick={()=>{
+                    handlebutton(800.00)
+                  }}
+                  >
                     +R$800,00
                   </button>
                 </div>
