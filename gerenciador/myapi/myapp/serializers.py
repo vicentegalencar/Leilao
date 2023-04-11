@@ -10,7 +10,7 @@ class LanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class LeilaoSerializer(serializers.ModelSerializer):
-    lance_set=LanceSerializer(many=True)
+    lance_set=LanceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Leilao
