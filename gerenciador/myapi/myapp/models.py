@@ -23,7 +23,7 @@ class Leilao(models.Model):
 
 #DataFlair Models
 class Lance(models.Model):
-    usuario = models.CharField(max_length = 50)
+    usuario = models.CharField(max_length = 100)
     valor = models.DecimalField(max_digits=50, decimal_places=2, null=False, blank=False)
     horario_lance = models.DateTimeField(auto_now_add=True)
     leilao = models.ForeignKey(Leilao, on_delete=models.CASCADE)

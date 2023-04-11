@@ -135,7 +135,7 @@ const LiveAuction = () => {
                   <div className="flex pt-3  space-x-2 mt-4">
                     <img className="w-10 " src={`${lance}`} />
                     <h3 className=" text-md font-bold text-bg-gray-900 mt-4 ">
-                      R${auctionItem.firstBid}
+                      R${auctionItem.actualBid}
                     </h3>
                   </div>
                 </article>

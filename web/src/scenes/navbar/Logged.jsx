@@ -47,7 +47,6 @@ const Logged = () => {
             <div className={`${flexBetween} gap-9 flex grid-cols-2 `}>
               
             
-            <img src={Icon} alt="icon" className={`w-12`} />
             <RouterLink to="/" style={{ textDecoration: "none" }}>
                 <span href="#" className={`${navLinks} text-2xl`}>
                   Sair
