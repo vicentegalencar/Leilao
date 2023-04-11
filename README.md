@@ -1,5 +1,5 @@
 # L.A. Loar
-Sistema de leilão online desenvolvido para a disciplina de Sistemas Distribuídos na Universidade Federal Rural de Educação
+Sistema de leilão online desenvolvido para a disciplina de Sistemas Distribuídos na Universidade Federal Rural de Pernambuco
 ##
 #### O sistema conta com 6 módulos
 * Gerenciador de leilão
