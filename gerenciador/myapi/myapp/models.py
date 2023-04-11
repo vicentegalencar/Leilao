@@ -39,6 +39,12 @@ def my_handler(sender, instance, created, **kwargs):
     if created:
         instance.leilao.actualBid=instance.valor
         instance.leilao.save()
+
+@receiver(post_save, sender=Leilao)
+def my_handler(sender, instance, created, **kwargs):
+    if created:
+        instance.actualBid=instance.firstBid
+        instance.save()
         
 
 

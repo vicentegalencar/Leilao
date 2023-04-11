@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: "http://127.0.0.1:5173", // Substitua pela URL do seu frontend, se necessário
+    origin: "http://localhost:5173", // Substitua pela URL do seu frontend, se necessário
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization","x-access-token"],
 }));

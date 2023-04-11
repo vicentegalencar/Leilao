@@ -14,6 +14,7 @@ const RegisterItem = () => {
     firstBid: "",
     endTime: "",
     photo: null,
+    lance_set: []
   });
 
   const fetchUser = async (data) => {
