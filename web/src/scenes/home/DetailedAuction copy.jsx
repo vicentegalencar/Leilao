@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import Cookies from "js-cookie";
+
 import { Link } from "react-router-dom";
 // import { connect } from 'react-redux';
 import { Navigate } from "react-router-dom";
@@ -11,57 +9,40 @@ import Chat from "../util/Chat";
 import Logged from "../navbar/logged";
 const flexBetween = "flex items-center justify-between";
 
-
 const DetailedAuction = () => {
+  const [auctionDetails, setAuctionDetails] = useState({});
   const { id } = useParams();
 
-  const [auctionItems, setAuctionItems] = useState({});
-  const [itemItens, setItensItens] = useState({});
-
-  const fetchItems = async () => {
-    await axios.get(`http://127.0.0.1:9000/RetrieveItens/${id}`, {
-      headers: {
-        "x-access-token": Cookies.get("token"),
-      },
-    })
-    .then((response)=>{
-      setItensItens(response.data ) ;
-
-    });
-  };
-
-  const fetchAuctions = async () => {
-    await axios.get(`http://127.0.0.1:8000/RetrieveLeilao/${id}`, {
-      headers: {
-        "x-access-token": Cookies.get("token"),
-      },
-    })
-    .then((response)=>{
-      setAuctionItems(response.data ) ;
-
-
-    });
-
-
-  };
+  const fetchAuctionDetails = async () => {
+    
+      const response = await axios.get(`http://127.0.0.1:9000/RetrieveItens/${id}`, {
+        headers: {
+          "x-access-token": Cookies.get("token"),
+        },
+      });
+      setAuctionDetails(response.data);
+    } 
 
   useEffect(() => {
-    fetchAuctions()
-    fetchItems()
+    fetchAuctionDetails();
   }, []);
-
- 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
-  };
- 
   
-
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    const interval = setInterval((time) => {
+      setSeconds(
+        (seconds) =>
+          (seconds =
+            time.hours +
+            " Horas " +
+            time.total.minutes +
+            " Minutos " +
+            time.total.seconds +
+            " Segundos")
+      );
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
@@ -69,18 +50,19 @@ const DetailedAuction = () => {
       <div className="flex  items-center justify-center py-24 flex-col ">
         <div className="w-full  max-w-7xl space-y-12 p-6 shadow-[0px_22px_70px_4px_rgba(0,0,0,0.10)] rounded-lg bg-white">
           <h2 className=" w-full text-center font-semibold text-3xl border-b-2 border-b-black p-5 ">
-          {auctionItems.name}
+          {auctionDetails.name}
           </h2>
           <div className=" flex grid-cols-2">
             <div className="flex-col">
-              <img src={itemItens.photo} alt={`Imagem de ${auctionItems.name}`} className="w-96 rounded-lg mr-12 pr-2 border-2 border-black"  />
+              <img src={registerIcon} className="w-96 rounded-lg" alt="" />
               <h2 className=" w-full  font-semibold text-xl border-b-2 border-b-black py-3 ">
                 INFORMAÇÕES
               </h2>
               <p className="text-lg text-gray-600">Lance Inicial:</p>
-              <p className="text-xl font-bold">R${auctionItems.firstBid}</p>
-              <p>Início: {formatDate(auctionItems.creation)} </p>
-              <p>Término: {formatDate(auctionItems.endTime)}</p>
+              <p className="text-xl font-bold">R$ 6000,00</p>
+              <p>Início: 13/03/2023 às 22:00 </p>
+              <p>Término: 15/03/2023 às 10:00</p>
+              <p>Localidade: Recife, PE</p>
             </div>
             <div className="flex-col justify-items-end w-full">
               <h2 className=" w-full text-white bg-green-400 p-2 font-semibold text-xl border-b-2 border-b-black py-3 ">
@@ -88,19 +70,19 @@ const DetailedAuction = () => {
               </h2>
               <div className="mt-10">
                 <p className="text-xl text-gray-600 text-right pr-">
-                
+                {auctionDetails.firstBid}
                 </p>
-                <p className="text-3xl font-bold text-right">R${auctionItems.actualBid}</p>
+                <p className="text-3xl font-bold text-right">R$ 12000,00</p>
               </div>
               <div className="text-right">
-                {/* <h3 class="mt-3 text-md font-bold text-bg-gray-900   ">
+                <h3 class="mt-3 text-md font-bold text-bg-gray-900   ">
                   Tempo para acabar:
                 </h3>
-                <time className="text-gray-500 mt-4 "></time>
+                <time className="text-gray-500 mt-4 ">{seconds}</time>
                 <h3 className="mt-3 text-md font-bold text-bg-gray-900   ">
                   Vendedor
                 </h3>
-                <h3>Everton</h3> */}
+                <h3>Everton</h3>
               </div>
               <div className="text-center grid-col">
                 <h3 className="font-semibold text-xl mb-6">
@@ -136,7 +118,7 @@ const DetailedAuction = () => {
             <div className=" space-y-12 p-12   ">
               <h2 className="font-semibold text-xl ">Especificações:</h2>
               <ul className="text-lg space-y-4 w-full ">
-              {itemItens.description}
+              {auctionDetails.description}
               </ul>
             </div>
             <div className="w-full">
@@ -146,7 +128,7 @@ const DetailedAuction = () => {
           </div>
         </div>
 
-        {/* <div className=" w-full max-w-7xl shadow-[0px_22px_70px_4px_rgba(0,0,0,0.10)] mt-4 rounded-lg bg-white ">
+        <div className=" w-full max-w-7xl shadow-[0px_22px_70px_4px_rgba(0,0,0,0.10)] mt-4 rounded-lg bg-white ">
           <div className=" p-6 border-2 border-black w-full  ">
             <h2 className="font-bold text-xl ">Histórico de Lances:</h2>
 
@@ -168,7 +150,7 @@ const DetailedAuction = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -31,6 +31,9 @@ class ItemList(generics.ListCreateAPIView):
         return super().create(request, *args, **kwargs)
 
     
-    
+class RetrieveItens(generics.RetrieveAPIView):
+
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
 
 

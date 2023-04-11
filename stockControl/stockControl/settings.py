@@ -71,7 +71,10 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 ]
 
 
+MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images/')
+
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 

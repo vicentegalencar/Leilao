@@ -69,16 +69,14 @@ const LiveAuction = () => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
-  
+
     return `${year}-${month}-${day}`;
   };
 
-
-  const timetoend = new Countdown("22 March 2023 23:59:59 GMT-0300");
   const [seconds, setSeconds] = useState(0);
   useEffect(() => {
-  
-    const interval = setInterval(() => {
+    const interval = setInterval((time) => {
+      const timetoend = new Countdown(time);
       setSeconds(
         (seconds) =>
           (seconds =
@@ -127,10 +125,11 @@ const LiveAuction = () => {
                     </h3>
 
                     <div className="mt-4">
+                    <h2>Fim do leilão:</h2>
+                    <time className=" text-lg font-bold">
                       
-                      <input 
-                      className="bg-gray-200"
-                      type="datetime" value={auctionItem.endTime} />
+                         {formatDate(auctionItem.endTime)}
+                      </time>
                     </div>
                   </div>
                   <div className="flex pt-3  space-x-2 mt-4">
@@ -138,13 +137,6 @@ const LiveAuction = () => {
                     <h3 className=" text-md font-bold text-bg-gray-900 mt-4 ">
                       R${auctionItem.firstBid}
                     </h3>
-
-                    
-                      <time className="text-gray-500 mt-4 pl-24 rounded-md text-lg ">
-                        10
-                      </time>
-                      <img className="w-4 h-5 mt-5 " src={`${user}`} />
-                    
                   </div>
                 </article>
               </RouterLink>
